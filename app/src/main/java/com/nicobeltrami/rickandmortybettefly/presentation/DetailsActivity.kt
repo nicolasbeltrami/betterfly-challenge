@@ -3,6 +3,7 @@ package com.nicobeltrami.rickandmortybettefly.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import coil.load
 import coil.size.Precision
 import coil.size.Scale
@@ -33,7 +34,11 @@ class DetailsActivity : AppCompatActivity() {
     private fun observeViewModelChanges() {
         viewModel.screenState.observe(this) { state ->
             when (state) {
+                is CharacterDetailsScreenState.OnDataLoadingState -> {
+                    hideUi()
+                }
                 is CharacterDetailsScreenState.OnDataLoadedState -> {
+                    showUi()
                     getCharacter(state.character)
                 }
             }
@@ -58,5 +63,15 @@ class DetailsActivity : AppCompatActivity() {
     private fun getIdFromExtras() {
         val characterId = intent.getIntExtra("ID", 0)
         id = characterId
+    }
+
+    private fun hideUi() {
+        binding.clDetails.isVisible = false
+        binding.pbDetails.isVisible = true
+    }
+
+    private fun showUi() {
+        binding.clDetails.isVisible = true
+        binding.pbDetails.isVisible = false
     }
 }

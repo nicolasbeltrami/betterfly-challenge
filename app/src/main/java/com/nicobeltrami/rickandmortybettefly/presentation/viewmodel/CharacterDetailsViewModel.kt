@@ -41,6 +41,7 @@ class CharacterDetailsViewModel @Inject constructor(
 
     private fun getCharacterById(id: Int) {
         viewModelScope.launch {
+            setState(CharacterDetailsScreenState.OnDataLoadingState)
             val result = useCase.invoke(id)
             getCharacterDetail(result)
         }

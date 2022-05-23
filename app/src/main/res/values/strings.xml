@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Rick and Morty Bettefly</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="alive">Alive</string>
+    <string name="gender_text">Gender:</string>
+    <string name="specie">Specie:</string>
+    <string name="specie_title">Specie</string>
+    <string name="origin_title">Origin:</string>
+    <string name="origin">Origin</string>
+    <string name="location_title">Location:</string>
+    <string name="location">Location</string>
 </resources>
