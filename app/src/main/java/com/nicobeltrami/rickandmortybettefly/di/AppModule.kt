@@ -5,6 +5,7 @@ import com.nicobeltrami.rickandmortybettefly.data.remote.RemoteDataSource
 import com.nicobeltrami.rickandmortybettefly.data.repository.CharacterRepositoryImpl
 import com.nicobeltrami.rickandmortybettefly.domain.repository.CharacterRepository
 import com.nicobeltrami.rickandmortybettefly.domain.usecase.FetchCharactersUseCase
+import com.nicobeltrami.rickandmortybettefly.domain.usecase.GetCharacterByIdUseCase
 import com.nicobeltrami.rickandmortybettefly.presentation.model.CharacterMapper
 import dagger.Module
 import dagger.Provides
@@ -60,6 +61,12 @@ object AppModule {
     @Singleton
     fun provideFetchCharactersUseCase(repository: CharacterRepository): FetchCharactersUseCase {
         return FetchCharactersUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCharacterByIdUseCase(repository: CharacterRepository): GetCharacterByIdUseCase {
+        return GetCharacterByIdUseCase(repository)
     }
 
     @Provides

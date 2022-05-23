@@ -17,4 +17,17 @@ object CharacterMapper {
         ) }
     }
 
+    fun fromDomainToViewCharacterViewState(character: Character): CharacterState {
+        return CharacterState(
+            id = character.id,
+            name = character.name,
+            status = character.status,
+            gender = character.gender,
+            image = character.image,
+            species = character.species,
+            origin = character.origin,
+            location = character.location
+        )
+    }
+
 }
