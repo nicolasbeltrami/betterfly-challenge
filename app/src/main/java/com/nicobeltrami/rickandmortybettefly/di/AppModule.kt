@@ -1,6 +1,11 @@
 package com.nicobeltrami.rickandmortybettefly.di
 
 import com.nicobeltrami.rickandmortybettefly.data.remote.ApiService
+import com.nicobeltrami.rickandmortybettefly.data.remote.RemoteDataSource
+import com.nicobeltrami.rickandmortybettefly.data.repository.CharacterRepositoryImpl
+import com.nicobeltrami.rickandmortybettefly.domain.repository.CharacterRepository
+import com.nicobeltrami.rickandmortybettefly.domain.usecase.FetchCharactersUseCase
+import com.nicobeltrami.rickandmortybettefly.presentation.model.CharacterMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,5 +40,31 @@ object AppModule {
             .client(client)
             .build()
             .create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCharacterRepository(datasource: RemoteDataSource): CharacterRepository {
+        return CharacterRepositoryImpl(
+            datasource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDatasource(service: ApiService): RemoteDataSource {
+        return RemoteDataSource(service)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFetchCharactersUseCase(repository: CharacterRepository): FetchCharactersUseCase {
+        return FetchCharactersUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCharacterMapper(): CharacterMapper {
+        return CharacterMapper
     }
 }

@@ -9,7 +9,8 @@ import coil.load
 import com.nicobeltrami.rickandmortybettefly.databinding.ItemCharacterBinding
 import com.nicobeltrami.rickandmortybettefly.presentation.model.CharacterState
 
-class CharacterAdapter() : ListAdapter<CharacterState, CharacterAdapter.ViewHolder>(DIFF_CALLBACK) {
+class CharacterAdapter(val onItemClicked: (Int) -> Unit) :
+    ListAdapter<CharacterState, CharacterAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -49,6 +50,9 @@ class CharacterAdapter() : ListAdapter<CharacterState, CharacterAdapter.ViewHold
                 tvName.text = item.name
                 tvGender.text = item.gender
                 ivCharacter.load(item.image)
+                binding.root.setOnClickListener {
+                    onItemClicked(item.id)
+                }
             }
         }
     }
