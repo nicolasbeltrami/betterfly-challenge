@@ -1,12 +1,11 @@
 package com.nicobeltrami.rickandmortybettefly.presentation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nicobeltrami.rickandmortybettefly.R
 import com.nicobeltrami.rickandmortybettefly.databinding.ActivityMainBinding
 import com.nicobeltrami.rickandmortybettefly.presentation.adapter.CharacterAdapter
 import com.nicobeltrami.rickandmortybettefly.presentation.model.CharacterState
